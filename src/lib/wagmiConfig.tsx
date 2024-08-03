@@ -1,6 +1,6 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 import { cookieStorage, createStorage } from "wagmi";
-import { base } from "wagmi/chains";
+import { base, baseSepolia } from "wagmi/chains";
 
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
@@ -13,7 +13,7 @@ export const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [base] as const;
+const chains = [baseSepolia, base] as const;
 export const config = defaultWagmiConfig({
   chains,
   projectId,
@@ -22,4 +22,8 @@ export const config = defaultWagmiConfig({
   storage: createStorage({
     storage: cookieStorage,
   }),
+  auth: {
+    socials: ["google", "x", "discord", "facebook", "farcaster"],
+    showWallets: false,
+  },
 });
